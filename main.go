@@ -3,8 +3,10 @@ package main
 // Import our dependencies. We'll use the standard HTTP library as well as the gorilla router for this app
 import (
 	"net/http"
+	"os"
 
 	appHandlers "github.com/SrcHndWng/go-learning-webapp-auth/handlers"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -25,5 +27,5 @@ func main() {
 	r.Handle("/products/{slug}/feedback", appHandlers.AddFeedbackHandler).Methods("POST")
 
 	// Our application will run on port 3000. Here we declare the port and pass in our router.
-	http.ListenAndServe(":3000", r)
+	http.ListenAndServe(":3000", handlers.LoggingHandler(os.Stdout, r))
 }
