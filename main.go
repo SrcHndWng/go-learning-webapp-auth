@@ -25,6 +25,8 @@ func main() {
 	r.Handle("/status", appHandlers.StatusHandler).Methods("GET")
 	r.Handle("/products", appHandlers.ProductsHandler).Methods("GET")
 	r.Handle("/products/{slug}/feedback", appHandlers.AddFeedbackHandler).Methods("POST")
+	// GetToken
+	r.Handle("/get-token", appHandlers.GetTokenHandler).Methods("GET")
 
 	// Our application will run on port 3000. Here we declare the port and pass in our router.
 	http.ListenAndServe(":3000", handlers.LoggingHandler(os.Stdout, r))
