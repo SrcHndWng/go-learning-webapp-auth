@@ -14,7 +14,7 @@ var ProductsHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reque
 	w.WriteHeader(401)
 	w.Write([]byte("your token is not authorized."))
 
-	// TODO: redo comment out.
+	// TODO: Temporary comment out. After implement validation, redo comment out.
 	// Here we are converting the slice of products to JSON
 	// payload, _ := json.Marshal(products)
 	// w.Write([]byte(payload))
