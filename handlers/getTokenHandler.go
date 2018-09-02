@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 	"time"
 
@@ -35,6 +36,7 @@ func validateToken(w http.ResponseWriter, r *http.Request) (*jwt.Token, error) {
 		return b, nil
 	})
 	if err != nil {
+		log.Printf("raise token error : %v\n", err)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(401)
 		w.Write([]byte("your token is not authorized."))

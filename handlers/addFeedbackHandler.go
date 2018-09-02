@@ -12,6 +12,10 @@ import (
    so that as long as the request is successful and we can match a product to our catalog of products
    we'll return an OK status. */
 var AddFeedbackHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	if _, err := validateToken(w, r); err != nil {
+		return
+	}
+
 	var product Product
 	vars := mux.Vars(r)
 	slug := vars["slug"]
