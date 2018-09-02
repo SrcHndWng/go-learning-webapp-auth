@@ -5,6 +5,7 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go/request"
 )
 
 var secretKey = "your-secret-key"
@@ -27,3 +28,10 @@ var GetTokenHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reque
 		w.Write([]byte("Could not generate token"))
 	}
 })
+
+func validate(req *http.Request) (*jwt.Token, error) {
+	return request.ParseFromRequest(req, request.OAuth2Extractor, func(token *jwt.Token) (interface{}, error) {
+		b := []byte(secretKey)
+		return b, nil
+	})
+}

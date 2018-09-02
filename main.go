@@ -28,6 +28,6 @@ func main() {
 	// GetToken
 	r.Handle("/get-token", appHandlers.GetTokenHandler).Methods("GET")
 
-	// Our application will run on port 3000. Here we declare the port and pass in our router.
-	http.ListenAndServe(":3000", handlers.LoggingHandler(os.Stdout, r))
+	// Our application will run on port 8080. Here we declare the port and pass in our router.
+	http.ListenAndServe(":8080", handlers.LoggingHandler(os.Stdout, r))
 }

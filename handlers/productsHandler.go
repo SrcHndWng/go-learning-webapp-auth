@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"encoding/json"
 	"net/http"
 )
 
@@ -9,13 +10,14 @@ import (
 var ProductsHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// TODO: add token validate.
-	// status 401 unauthorized.
-	w.WriteHeader(401)
-	w.Write([]byte("your token is not authorized."))
+	_, err := validate(r)
+	if err != nil {
+		w.WriteHeader(401)
+		w.Write([]byte("your token is not authorized."))
+		return
+	}
 
-	// TODO: Temporary comment out. After implement validation, redo comment out.
 	// Here we are converting the slice of products to JSON
-	// payload, _ := json.Marshal(products)
-	// w.Write([]byte(payload))
+	payload, _ := json.Marshal(products)
+	w.Write([]byte(payload))
 })
