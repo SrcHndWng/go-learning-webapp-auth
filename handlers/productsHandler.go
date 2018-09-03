@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-/* The products handler will be called when the user makes a GET request to the /products endpoint.
-   This handler will return a list of products available for users to review */
+// ProductsHandler will be called when the user makes a GET request to the /products endpoint.
+// This handler will return a list of products available for users to review.
 var ProductsHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	if _, err := validateToken(w, r); err != nil {
 		return

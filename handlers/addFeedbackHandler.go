@@ -7,10 +7,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-/* The feedback handler will add either positive or negative feedback to the product
-   We would normally save this data to the database - but for this demo, we'll fake it
-   so that as long as the request is successful and we can match a product to our catalog of products
-   we'll return an OK status. */
+// AddFeedbackHandler will add either positive or negative feedback to the product
+// We would normally save this data to the database - but for this demo, we'll fake it
+// so that as long as the request is successful and we can match a product to our catalog of products
+// we'll return an OK status.
 var AddFeedbackHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	if _, err := validateToken(w, r); err != nil {
 		return
