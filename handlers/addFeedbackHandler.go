@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/SrcHndWng/go-learning-webapp-auth/auth"
 	"github.com/gorilla/mux"
 )
 
@@ -12,7 +13,7 @@ import (
 // so that as long as the request is successful and we can match a product to our catalog of products
 // we'll return an OK status.
 var AddFeedbackHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	if _, err := validateToken(w, r); err != nil {
+	if _, err := auth.ValidateToken(w, r); err != nil {
 		return
 	}
 
